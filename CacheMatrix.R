@@ -1,23 +1,23 @@
-makeCacheMatrix <- function(x=matrix()){
+makeCacheMatrix <- function(a=matrix()){
   inv <- NULL
-  set <- function(y){
-      x <<- y
+  set <- function(a){
+      a <<- b
       inv <<- NULL
   }
-  get <- function(){x}
+  get <- function(){a}
   setInverse <- function(inverse) {inv <<- inverse}
   getInverse <- function(){inv}
   list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)
 }
 
-cacheSolve <- function(x, ...){
-  inv <- x$getInverse()
+cacheSolve <- function(a, ...){
+  inv <- a$getInverse()
   if (!is.null(inv)){
     message("loading cache")
     return(inv)
   }
-  mat <- x$get()
+  mat <- a$get()
   inv <- solve(mat, ...)
-  x$setInverse(inv)
+  a$setInverse(inv)
   inv
 }
